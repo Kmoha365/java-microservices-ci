@@ -3,6 +3,14 @@ on:
   push:
     branches: ["master"]
 jobs:
+  gitleaks-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        
+      - name: secret scan
+        uses: gitleaks/gitleaks-action@v2
   build-and-push:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -10,13 +18,8 @@ jobs:
       matrix:
         service: [employee-service, department-service, api-gateway]
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
 
-      - name: secret scan
-        uses: gitleaks/gitleaks-action@v2
-        with:
-          upload-artifact: false
+
 
 
       - name: setup-java 17
