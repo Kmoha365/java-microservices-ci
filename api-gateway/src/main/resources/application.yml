@@ -8,9 +8,9 @@ spring:
         - id: employee
           uri: http://employee:8081
           predicates:
-            - Path=/employees, /employees/**
+            - Path=/employees/**
 
         - id: department
           uri: http://department:8082
           predicates:
-            - Path=/departments, /departments/**
+            - Path=/departments/**
