@@ -15,7 +15,7 @@ jobs:
 
       - name: secret scan
         uses: gitleaks/gitleaks-action@v2
-        run: gitleaks detect --source . --verbose --redact --exit-code 1
+
 
       - name: setup-java 17
         uses: actions/setup-java@v4
