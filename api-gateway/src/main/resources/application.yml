@@ -6,11 +6,11 @@ spring:
     gateway:
       routes:
         - id: employee-service
-          uri: http://employee-service:8081
+          uri: http://employee:8081
           predicates:
             - Path=/employees/**
 
         - id: department-service
-          uri: http://department-service:8082
+          uri: http://department:8082
           predicates:
             - Path=/departments/**
