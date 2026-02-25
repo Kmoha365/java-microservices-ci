@@ -2,7 +2,7 @@ name: CD - Deploy to EKS
 
 on:
   workflow_run:
-    workflows: ["main.yl"]
+    workflows: ["main.yml"]
     types:
       - completed
 
