@@ -22,9 +22,9 @@ jobs:
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
-
-      - name: Restart Deployment
+      - name: Deploy Kubernetes Manifests
         run: |
-          kubectl rollout restart deployment api-gateway-deployment
-          kubectl rollout restart deployment employee-deployment
-          kubectl rollout restart deployment department-deployment
+          kubectl apply -f k8s/microservices.yaml
+          kubectl get pods
+          kubectl get svc
+       
