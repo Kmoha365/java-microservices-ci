@@ -2,15 +2,35 @@ server:
   port: 8080
 
 spring:
+  main:
+    web-application-type: reactive
+
   cloud:
     gateway:
       routes:
+
+        # Employee Service Route
         - id: employee-service
-          uri: http://employee:8081
+          uri: http://employee-service:8081
           predicates:
             - Path=/employees/**
+          filters:
+            - StripPrefix=0
 
+        # Department Service Route
         - id: department-service
-          uri: http://department:8082
+          uri: http://department-service:8082
           predicates:
             - Path=/departments/**
+          filters:
+            - StripPrefix=0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
